@@ -30,6 +30,11 @@ public class Box {
 	    body.createFixture(fixtureDef);
 	    
 	}
+	public void setTransform(float newX,float newY,float newAngle){
+		Vec2 location = new Vec2(newX,newY);
+		body.setTransform(location, newAngle);
+	}
+	
 	public void draw(){
         Vec2 position = body.getPosition();
         float angle = body.getAngle();
@@ -51,7 +56,14 @@ public class Box {
 			
 				//
 				GL11.glBegin(GL11.GL_QUADS);
-				  
+					
+					GL11.glColor3f(0,0,0);
+					GL11.glVertex2f(x-(width/2)-1,y-(height/2)-1);
+					GL11.glVertex2f(x-(width/2)+width+1,y-(height/2)-1);
+					GL11.glVertex2f(x-(width/2)+width+1,y+height-(height/2)+1);
+					GL11.glVertex2f(x-(width/2)-1,y+height-(height/2)+1);
+				
+					GL11.glColor3f(0.5f,0.5f,1.0f);
 					GL11.glVertex2f(x-(width/2),y-(height/2));
 	            	GL11.glVertex2f(x-(width/2)+width,y-(height/2));
 	            	GL11.glVertex2f(x-(width/2)+width,y+height-(height/2));

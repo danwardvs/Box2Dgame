@@ -33,16 +33,18 @@ public class main {
 		    groundBox.setAsBox(800, 0);
 		    groundBody.createFixture(groundBox, 0);
 		    
-		    Box box2 = new Box(world,0.4f,8f);
-		   
+		    
+		    Box[] gameBoxes = new Box[60];
+		 
 		    // Setup world
 		    float timeStep = 1.0f/60.0f;
 		    int velocityIterations = 6;
 		    int positionIterations = 2;
 
 		    // Run loop
-		    for (int i = 0; i < 60; ++i) {
-		        
+		    for (int i = 0; i < 59; ++i) {
+			    gameBoxes[i] = new Box(world,(float)Math.random()*20,(float)Math.random()*20);
+
 		    } 
 			
 	        try {
@@ -62,15 +64,19 @@ public class main {
 	    while (!Display.isCloseRequested()) {
 	    	
 	    	world.step(timeStep, velocityIterations, positionIterations);
-	       
+	    	
 	    	
 	        // Clear the screen and depth buffer
 	        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);  
 	         
+	        GL11.glClearColor(1, 1, 1, 0);
 	        // set the color of the quad (R,G,B,A)
-	        GL11.glColor3f(0.5f,0.5f,1.0f);
+	        
 	             
-	        box2.draw();
+	        for (int i = 0; i < 59; ++i) {
+			    gameBoxes[i].draw();
+
+		    } 
 	  
 	        Display.update();
 	        
