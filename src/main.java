@@ -14,31 +14,56 @@ import org.lwjgl.opengl.GL11;
 
 public class main {
 		
+	  public static float normalRelativeAngle( float angle) {
+		    return ((angle %= ((float)Math.PI*2)) >= 0 ? (angle < (float)Math.PI) ? angle : angle - ((float)Math.PI*2) : (angle >= -(float)Math.PI) ? angle : angle + ((float)Math.PI*2))* (180 / (float)Math.PI);
+	  }
 	public void drawBody(Body newBody){
         Vec2 position = newBody.getPosition();
         float angle = newBody.getAngle();
-        drawRect(position.x*20,position.y*20,40,40);
+        drawRect(angle,position.x*20,position.y*20,40,40);
 	}
 	
-		public void drawRect(float x, float y, float width, float height){
+		public void drawRect(float angle,float x, float y, float width, float height){
 			 // draw quad
-	        GL11.glBegin(GL11.GL_QUADS);
-	            GL11.glVertex2f(x,y);
-	            GL11.glVertex2f(x+width,y);
-	            GL11.glVertex2f(x+width,y+height);
-	            GL11.glVertex2f(x,y+height);
-	        GL11.glEnd();
+			GL11.glLoadIdentity();
+			GL11.glPushMatrix();
+			GL11.glTranslatef(x, y, 0);
+			GL11.glTranslatef(400, 300, 0);
+			GL11.glRotatef((float)Math.toDegrees(angle), 0, 0, 1);
+			GL11.glTranslatef(-x, -y, 0);
+			GL11.glTranslatef(-400, -300, 0);
+			GL11.glTranslatef(400, 300, 0);
+			
+			
+			
+				//
+				GL11.glBegin(GL11.GL_QUADS);
+				  
+					GL11.glVertex2f(x-(width/2),y-(height/2));
+	            	GL11.glVertex2f(x-(width/2)+width,y-(height/2));
+	            	GL11.glVertex2f(x-(width/2)+width,y+height-(height/2));
+	            	GL11.glVertex2f(x-(width/2),y+height-(height/2));
+	            	
+		           
+	            GL11.glEnd();
+	            
+	            
+	            
+	        GL11.glPopMatrix();
 		}
-	  
+		public void createBoxBody(float newX, float newY){
+			
+		}
+		
 	    public void start() {
 	    	 // Static Body
 		    Vec2  gravity = new Vec2(0,-10);
 		    World world = new World(gravity);
 		    BodyDef groundBodyDef = new BodyDef();
-		    groundBodyDef.position.set(-100, -26);
+		    groundBodyDef.position.set(0, -15);
 		    Body groundBody = world.createBody(groundBodyDef);
 		    PolygonShape groundBox = new PolygonShape();
-		    groundBox.setAsBox(1000, 10);
+		    groundBox.setAsBox(800, 0);
 		    groundBody.createFixture(groundBox, 0);
 
 		    // Dynamic Body
@@ -54,19 +79,7 @@ public class main {
 		    fixtureDef.friction = 0.3f;
 		    body.createFixture(fixtureDef);
 		    
-		    // Dynamic Body
-		    BodyDef bodyDef2 = new BodyDef();
-		    bodyDef2.type = BodyType.DYNAMIC;
-		    bodyDef2.position.set(0.5f, 6f);
-		    Body body2 = world.createBody(bodyDef2);
-		    PolygonShape dynamicBox2 = new PolygonShape();
-		    dynamicBox2.setAsBox(1, 1);
-		    FixtureDef fixtureDef2 = new FixtureDef();
-		    fixtureDef2.shape = dynamicBox2;
-		    fixtureDef2.density = 1;
-		    fixtureDef2.friction = 0.3f;
-		    body2.createFixture(fixtureDef2);
-		    
+		   
 		    // Setup world
 		    float timeStep = 1.0f/60.0f;
 		    int velocityIterations = 6;
@@ -90,7 +103,7 @@ public class main {
 	    GL11.glLoadIdentity();
 	    GL11.glOrtho(0,800, 0, 600, 1, -1);
 	    GL11.glMatrixMode(GL11.GL_MODELVIEW);
-	    GL11.glTranslatef(400, 300, 0);
+	    
 	    while (!Display.isCloseRequested()) {
 	    	
 	    	world.step(timeStep, velocityIterations, positionIterations);
@@ -103,9 +116,11 @@ public class main {
 	        GL11.glColor3f(0.5f,0.5f,1.0f);
 	             
 	        drawBody(body);
-	        drawBody(body2);
+	        
 	  
 	        Display.update();
+	        
+	        Display.sync(60);
 	    }
 	  
 	    Display.destroy();
