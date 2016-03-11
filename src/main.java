@@ -13,6 +13,8 @@ import org.lwjgl.opengl.GL11;
 
 
 public class main {
+	
+		int BOX_AMOUNT = 600;
 		
 	    public void start() {
 	    	
@@ -29,7 +31,7 @@ public class main {
 		    groundBody.createFixture(groundBox, 0);
 		    
 		    
-		    Box[] gameBoxes = new Box[60];
+		    Box[] gameBoxes = new Box[BOX_AMOUNT];
 		 
 		    // Setup world
 		    float timeStep = 1.0f/60.0f;
@@ -37,8 +39,8 @@ public class main {
 		    int positionIterations = 2;
 
 		    // Run loop
-		    for (int i = 0; i < 59; ++i) {
-			    gameBoxes[i] = new Box(world,(float)Math.random()*20-10,(float)Math.random()*20,(float)Math.random()*2,(float)Math.random()*2);
+		    for (int i = 0; i <BOX_AMOUNT; ++i) {
+		    	gameBoxes[i] = new Box(world,((float)Math.random()*40)-20,-15,0.1f,0.1f);
 
 		    } 
 			
@@ -66,10 +68,11 @@ public class main {
 	         
 	        GL11.glClearColor(1, 1, 1, 0);
 	        // set the color of the quad (R,G,B,A)
-	        
+	       
 	             
-	        for (int i = 0; i < 59; ++i) {
-			    gameBoxes[i].draw();
+	        for (int i = 0; i < BOX_AMOUNT; ++i) {
+	        	if((int)(Math.random()*1000)==1)gameBoxes[i] = new Box(world,((float)Math.random()*40)-20,15,0.1f,0.1f);
+	        	gameBoxes[i].draw();
 
 		    } 
 	  
