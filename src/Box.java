@@ -13,16 +13,20 @@ import org.lwjgl.opengl.GL11;
 public class Box {
 	
 	Body body;
+	float width;
+	float height;
 	
-	public Box(World newWorld, float newX, float newY){
+	public Box(World newWorld, float newX, float newY,float newWidth, float newHeight){
 		
+		height = newHeight;
+		width = newWidth;
 		// Dynamic Body
 	    BodyDef bodyDef = new BodyDef();
 	    bodyDef.type = BodyType.DYNAMIC;
 	    bodyDef.position.set(newX, newY);
 	    body = newWorld.createBody(bodyDef);
 	    PolygonShape dynamicBox = new PolygonShape();
-	    dynamicBox.setAsBox(1, 1);
+	    dynamicBox.setAsBox(width, height);
 	    FixtureDef fixtureDef = new FixtureDef();
 	    fixtureDef.shape = dynamicBox;
 	    fixtureDef.density = 1;
@@ -38,7 +42,7 @@ public class Box {
 	public void draw(){
         Vec2 position = body.getPosition();
         float angle = body.getAngle();
-        drawRect(angle,position.x*20,position.y*20,40,40);
+        drawRect(angle,position.x*20,position.y*20,width*40,height*40);
 	}
 	
 	public void drawRect(float angle,float x, float y, float width, float height){

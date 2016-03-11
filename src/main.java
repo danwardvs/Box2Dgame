@@ -14,11 +14,6 @@ import org.lwjgl.opengl.GL11;
 
 public class main {
 		
-	  public static float normalRelativeAngle( float angle) {
-		    return ((angle %= ((float)Math.PI*2)) >= 0 ? (angle < (float)Math.PI) ? angle : angle - ((float)Math.PI*2) : (angle >= -(float)Math.PI) ? angle : angle + ((float)Math.PI*2))* (180 / (float)Math.PI);
-	  }
-
-
 	    public void start() {
 	    	
 	    	
@@ -43,7 +38,7 @@ public class main {
 
 		    // Run loop
 		    for (int i = 0; i < 59; ++i) {
-			    gameBoxes[i] = new Box(world,(float)Math.random()*20,(float)Math.random()*20);
+			    gameBoxes[i] = new Box(world,(float)Math.random()*20-10,(float)Math.random()*20,(float)Math.random()*2,(float)Math.random()*2);
 
 		    } 
 			
