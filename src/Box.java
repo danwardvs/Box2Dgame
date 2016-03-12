@@ -15,8 +15,12 @@ public class Box {
 	Body body;
 	float width;
 	float height;
+	float r;
+	float g;
+	float b;
+	float a;
 	
-	public Box(World newWorld,BodyType newBodyType,  float newX, float newY,float newWidth, float newHeight, float newAngle){
+	public Box(World newWorld,BodyType newBodyType,  float newX, float newY,float newWidth, float newHeight, float newAngle, float newR,float newG, float newB, float newA){
 		
 		height = newHeight;
 		width = newWidth;
@@ -43,14 +47,14 @@ public class Box {
 	public void draw(){
         Vec2 position = body.getPosition();
         float angle = body.getAngle();
-        drawRect(angle,position.x*20,position.y*20,width*40,height*40);
+        drawRect(angle,position.x*20,position.y*20,width*40,height*40,r,g,b,a);
 	}
 	
 	public void applyTorque(float newTorque){
 		 body.applyTorque(newTorque);
 	}
 	
-	public void drawRect(float angle,float x, float y, float width, float height){
+	public void drawRect(float angle,float x, float y, float width, float height, float newR,float newG, float newB, float newA){
 			 // draw quad
 			GL11.glLoadIdentity();
 			GL11.glPushMatrix();
