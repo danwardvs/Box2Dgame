@@ -16,14 +16,15 @@ public class Box {
 	float width;
 	float height;
 	
-	public Box(World newWorld, float newX, float newY,float newWidth, float newHeight){
+	public Box(World newWorld,BodyType newBodyType,  float newX, float newY,float newWidth, float newHeight, float newAngle){
 		
 		height = newHeight;
 		width = newWidth;
 		// Dynamic Body
 	    BodyDef bodyDef = new BodyDef();
-	    bodyDef.type = BodyType.DYNAMIC;
+	    bodyDef.type = newBodyType;
 	    bodyDef.position.set(newX, newY);
+	    bodyDef.angle = newAngle;
 	    body = newWorld.createBody(bodyDef);
 	    PolygonShape dynamicBox = new PolygonShape();
 	    dynamicBox.setAsBox(width, height);

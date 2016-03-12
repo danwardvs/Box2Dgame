@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 
 public class main {
 	
-		int BOX_AMOUNT = 600;
+		int BOX_AMOUNT = 50;
 		
 	    public void start() {
 	    	
@@ -40,10 +40,13 @@ public class main {
 
 		    // Run loop
 		    for (int i = 0; i <BOX_AMOUNT; ++i) {
-		    	gameBoxes[i] = new Box(world,((float)Math.random()*40)-20,-15,0.1f,0.1f);
-
+		    	if((int)(Math.random()*2)==1)
+		    			gameBoxes[i] = new Box(world,BodyType.DYNAMIC,(float)(Math.random()*30)-15,(float)(Math.random()*30)-15,(float)Math.random()*2,(float)Math.random()*2,(float)Math.toRadians(Math.random() * 360));
+		    	else
+	    			gameBoxes[i] = new Box(world,BodyType.STATIC,(float)(Math.random()*30)-15,(float)(Math.random()*30)-15,(float)Math.random()*2,(float)Math.random()*2,(float)Math.toRadians(Math.random() * 360));
 		    } 
-			
+		    
+		    
 	        try {
 	        Display.setDisplayMode(new DisplayMode(800,600));
 	        Display.create();
@@ -71,7 +74,7 @@ public class main {
 	       
 	             
 	        for (int i = 0; i < BOX_AMOUNT; ++i) {
-	        	if((int)(Math.random()*1000)==1)gameBoxes[i] = new Box(world,((float)Math.random()*40)-20,15,0.1f,0.1f);
+	        	//if((int)(Math.random()*1000)==1)gameBoxes[i] = new Box(world,((float)Math.random()*40)-20,15,0.1f,0.1f);
 	        	gameBoxes[i].draw();
 
 		    } 
