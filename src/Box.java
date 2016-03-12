@@ -67,16 +67,16 @@ public class Box {
 				GL11.glBegin(GL11.GL_QUADS);
 					
 					GL11.glColor3f(0,0,0);
-					GL11.glVertex2f(x-(width/2)-1,y-(height/2)-1);
-					GL11.glVertex2f(x-(width/2)+width+1,y-(height/2)-1);
-					GL11.glVertex2f(x-(width/2)+width+1,y+height-(height/2)+1);
-					GL11.glVertex2f(x-(width/2)-1,y+height-(height/2)+1);
+					GL11.glVertex2f(x-(width/2),y-(height/2));
+					GL11.glVertex2f(x-(width/2)+width,y-(height/2));
+					GL11.glVertex2f(x-(width/2)+width,y+height-(height/2));
+					GL11.glVertex2f(x-(width/2),y+height-(height/2));
 				
 					GL11.glColor3f(0.5f,0.5f,1.0f);
-					GL11.glVertex2f(x-(width/2),y-(height/2));
-	            	GL11.glVertex2f(x-(width/2)+width,y-(height/2));
-	            	GL11.glVertex2f(x-(width/2)+width,y+height-(height/2));
-	            	GL11.glVertex2f(x-(width/2),y+height-(height/2));
+					GL11.glVertex2f(x-(width/2)+1,y-(height/2)+1);
+	            	GL11.glVertex2f(x-(width/2)+width-1,y-(height/2)+1);
+	            	GL11.glVertex2f(x-(width/2)+width-1,y+height-(height/2)-1);
+	            	GL11.glVertex2f(x-(width/2)+1,y+height-(height/2)-1);
 	            	
 		           
 	            GL11.glEnd();
