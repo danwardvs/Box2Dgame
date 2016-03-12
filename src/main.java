@@ -51,7 +51,7 @@ public class main {
 		    // Run loop
 		    for (int i = 0; i <BOX_AMOUNT; ++i) {
 		    	//if((int)(Math.random()*2)==1)
-		    			gameBoxes[i] = new Box(world,BodyType.DYNAMIC,(3*i)-10,0,1,1,0,0,0,0,0);
+		    			gameBoxes[i] = new Box(world,BodyType.DYNAMIC,(3*i)-10,0,1,1,0,1,1f,0.5f,0);
 		    } 
 		    
 		    
@@ -83,7 +83,6 @@ public class main {
 	       
 	             
 	        for (int i = 0; i < BOX_AMOUNT; ++i) {
-	        	//if((int)(Math.random()*1000)==1)gameBoxes[i] = new Box(world,((float)Math.random()*40)-20,15,0.1f,0.1f);
 	        	gameBoxes[i].draw();
 
 		    } 

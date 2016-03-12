@@ -22,6 +22,10 @@ public class Box {
 	
 	public Box(World newWorld,BodyType newBodyType,  float newX, float newY,float newWidth, float newHeight, float newAngle, float newR,float newG, float newB, float newA){
 		
+		r = newR;
+		g = newG;
+		b = newB;
+		
 		height = newHeight;
 		width = newWidth;
 		// Dynamic Body
@@ -76,7 +80,7 @@ public class Box {
 					GL11.glVertex2f(x-(width/2)+width,y+height-(height/2));
 					GL11.glVertex2f(x-(width/2),y+height-(height/2));
 				
-					GL11.glColor3f(0.5f,0.5f,1.0f);
+					GL11.glColor3f(r,g,b);
 					GL11.glVertex2f(x-(width/2)+1,y-(height/2)+1);
 	            	GL11.glVertex2f(x-(width/2)+width-1,y-(height/2)+1);
 	            	GL11.glVertex2f(x-(width/2)+width-1,y+height-(height/2)-1);
