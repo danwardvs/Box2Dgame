@@ -19,8 +19,9 @@ public class Character extends Box {
 		 if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
 				applyImpulse(-movement_speed,0);
 		 }
-		 if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
-				applyImpulse(-movement_speed,0);
+		 if (Keyboard.isKeyDown(Keyboard.KEY_UP)){
+			 if(body.getLinearVelocity().y<=0.1f && body.getLinearVelocity().y>=-0.1f )
+				applyImpulse(0,2000);
 		 }
 	}
 

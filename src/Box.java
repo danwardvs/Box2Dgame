@@ -59,7 +59,7 @@ public class Box {
 	}
 	public void applyLinearImpulse(float newX,float newY){
 		//body.ApplyLinearImpulse( new Vec2(0,50), body.getWorldCenter());
-		//body.applyLinearImpulse(new Vec2(newX,newY), point, wake);
+		body.applyLinearImpulse(new Vec2(newX,newY), body.getPosition(), true);
 	}
 	public void applyImpulse(float newX, float newY){
 		body.applyForceToCenter(new Vec2(newX,newY));
