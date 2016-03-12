@@ -46,6 +46,10 @@ public class Box {
         drawRect(angle,position.x*20,position.y*20,width*40,height*40);
 	}
 	
+	public void applyTorque(float newTorque){
+		 body.applyTorque(newTorque);
+	}
+	
 	public void drawRect(float angle,float x, float y, float width, float height){
 			 // draw quad
 			GL11.glLoadIdentity();

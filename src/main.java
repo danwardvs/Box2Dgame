@@ -6,6 +6,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
@@ -15,6 +16,15 @@ import org.lwjgl.opengl.GL11;
 public class main {
 	
 		int BOX_AMOUNT = 50;
+		Box[] gameBoxes = new Box[BOX_AMOUNT];
+		
+		
+		 public void update(){
+			 if (Keyboard.isKeyDown(Keyboard.KEY_UP)){
+				 gameBoxes[0].applyTorque(30f);
+			 }
+				 
+		}
 		
 	    public void start() {
 	    	
@@ -31,7 +41,7 @@ public class main {
 		    groundBody.createFixture(groundBox, 0);
 		    
 		    
-		    Box[] gameBoxes = new Box[BOX_AMOUNT];
+		    
 		 
 		    // Setup world
 		    float timeStep = 1.0f/60.0f;
@@ -40,10 +50,10 @@ public class main {
 
 		    // Run loop
 		    for (int i = 0; i <BOX_AMOUNT; ++i) {
-		    	if((int)(Math.random()*2)==1)
+		    	//if((int)(Math.random()*2)==1)
 		    			gameBoxes[i] = new Box(world,BodyType.DYNAMIC,(float)(Math.random()*30)-15,(float)(Math.random()*30)-15,(float)Math.random()*2,(float)Math.random()*2,(float)Math.toRadians(Math.random() * 360));
-		    	else
-	    			gameBoxes[i] = new Box(world,BodyType.STATIC,(float)(Math.random()*30)-15,(float)(Math.random()*30)-15,(float)Math.random()*2,(float)Math.random()*2,(float)Math.toRadians(Math.random() * 360));
+		    	//else
+	    			//gameBoxes[i] = new Box(world,BodyType.STATIC,(float)(Math.random()*30)-15,(float)(Math.random()*30)-15,(float)Math.random()*2,(float)Math.random()*2,(float)Math.toRadians(Math.random() * 360));
 		    } 
 		    
 		    
@@ -64,6 +74,7 @@ public class main {
 	    while (!Display.isCloseRequested()) {
 	    	
 	    	world.step(timeStep, velocityIterations, positionIterations);
+	    	update();
 	    	
 	    	
 	        // Clear the screen and depth buffer
@@ -86,6 +97,8 @@ public class main {
 	  
 	    Display.destroy();
 	    }
+	    
+	   
 	  
 	
 	public static void main(String[] args) {
