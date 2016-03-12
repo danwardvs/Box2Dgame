@@ -17,12 +17,10 @@ public class main {
 	
 		int BOX_AMOUNT = 10;
 		Box[] gameBoxes = new Box[BOX_AMOUNT];
-		
+		Character gameCharacter;
 		
 		 public void update(){
-			 if (Keyboard.isKeyDown(Keyboard.KEY_UP)){
-				 gameBoxes[0].applyTorque(30f);
-			 }
+			gameCharacter.update();
 				 
 		}
 		
@@ -32,10 +30,10 @@ public class main {
 	    	
 	    	 // Static Body
 		    Vec2  gravity = new Vec2(0,-10);
-		    World world = new World(gravity);
+		    World gameWorld = new World(gravity);
 		    BodyDef groundBodyDef = new BodyDef();
 		    groundBodyDef.position.set(0, -15);
-		    Body groundBody = world.createBody(groundBodyDef);
+		    Body groundBody = gameWorld.createBody(groundBodyDef);
 		    PolygonShape groundBox = new PolygonShape();
 		    groundBox.setAsBox(800, 0);
 		    groundBody.createFixture(groundBox, 0);
@@ -51,8 +49,9 @@ public class main {
 		    // Run loop
 		    for (int i = 0; i <BOX_AMOUNT; ++i) {
 		    	//if((int)(Math.random()*2)==1)
-		    			gameBoxes[i] = new Box(world,BodyType.DYNAMIC,(3*i)-10,0,1,1,0,1,1f,0.5f,0);
+		    			gameBoxes[i] = new Box(gameWorld,BodyType.DYNAMIC,(3*i)-10,0,1,1,0,1,1f,0.5f,0);
 		    } 
+		    gameCharacter = new Character(gameWorld,BodyType.DYNAMIC,10,-2,1,1,0,1,0f,0.5f,0);
 		    
 		    
 	        try {
@@ -71,7 +70,7 @@ public class main {
 	    
 	    while (!Display.isCloseRequested()) {
 	    	
-	    	world.step(timeStep, velocityIterations, positionIterations);
+	    	gameWorld.step(timeStep, velocityIterations, positionIterations);
 	    	update();
 	    	
 	    	
@@ -86,6 +85,7 @@ public class main {
 	        	gameBoxes[i].draw();
 
 		    } 
+	        gameCharacter.draw();
 	  
 	        Display.update();
 	        

@@ -57,6 +57,14 @@ public class Box {
 	public void applyTorque(float newTorque){
 		 body.applyTorque(newTorque);
 	}
+	public void applyLinearImpulse(float newX,float newY){
+		//body.ApplyLinearImpulse( new Vec2(0,50), body.getWorldCenter());
+		//body.applyLinearImpulse(new Vec2(newX,newY), point, wake);
+	}
+	public void applyImpulse(float newX, float newY){
+		body.applyForceToCenter(new Vec2(newX,newY));
+	}
+	
 	
 	public void drawRect(float angle,float x, float y, float width, float height, float newR,float newG, float newB, float newA){
 			 // draw quad
