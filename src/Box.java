@@ -47,6 +47,12 @@ public class Box {
 		Vec2 location = new Vec2(newX,newY);
 		body.setTransform(location, newAngle);
 	}
+	public float getX(){
+		return body.getPosition().x;
+	}
+	public float getY(){
+		return body.getPosition().y;
+	}
 	
 	public void draw(){
         Vec2 position = body.getPosition();

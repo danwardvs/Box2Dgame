@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -17,11 +20,19 @@ public class main {
 	
 		int BOX_AMOUNT = 10;
 		Box[] gameBoxes = new Box[BOX_AMOUNT];
+		List<Box> gameProjectiles = new ArrayList<Box>();
 		Character gameCharacter;
+		static main worldController;
 		
 		 public void update(){
 			gameCharacter.update();
 				 
+		}
+		public void createProjectile(Box newProjectile){
+			
+			gameProjectiles.add(newProjectile);
+			newProjectile.applyLinearImpulse(100, 0);;
+			
 		}
 		
 	    public void start() {
@@ -43,7 +54,7 @@ public class main {
 		 
 		    // Setup world
 		    float timeStep = 1.0f/60.0f;
-		    int velocityIterations = 6;
+		    int velocityIterations = 12;
 		    int positionIterations = 2;
 
 		    // Run loop
@@ -51,7 +62,7 @@ public class main {
 		    	//if((int)(Math.random()*2)==1)
 		    			gameBoxes[i] = new Box(gameWorld,BodyType.DYNAMIC,(3*i)-10,0,1,1,0,1,1f,0.5f,0);
 		    } 
-		    gameCharacter = new Character(gameWorld,BodyType.DYNAMIC,10,-2,1,1,0,1,0f,0.5f,0);
+		    gameCharacter = new Character(worldController,gameWorld,BodyType.DYNAMIC,10,-2,1,1,0,1,0f,0.5f,0);
 		    
 		    
 	        try {
@@ -85,6 +96,11 @@ public class main {
 	        	gameBoxes[i].draw();
 
 		    } 
+	        
+	        for(Box projectile: gameProjectiles){
+	        	projectile.draw();
+	        }
+	        
 	        gameCharacter.draw();
 	  
 	        Display.update();
@@ -100,8 +116,8 @@ public class main {
 	
 	public static void main(String[] args) {
 		
-		main quadExample = new main();
-	        quadExample.start();
+		worldController = new main();
+	       worldController.start();
 	}
 
 }
