@@ -2,6 +2,13 @@
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.World;
 import org.lwjgl.input.Keyboard;
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.World;
 
 public class Character extends Box {
 	
@@ -10,6 +17,7 @@ public class Character extends Box {
 	WorldController gameController;
 	int bullet_time;
 	int bullet_time_delay=300;
+	Body feet;
 	
 	public Character(WorldController newWorldController, World newWorld, float newX, float newY, float newWidth, float newHeight,
 			float newAngle, float newR, float newG, float newB, float newA) {
@@ -17,6 +25,10 @@ public class Character extends Box {
 		gameWorld = newWorld;
 		gameController = newWorldController;
 		body.setFixedRotation(true);
+		
+	
+
+	
 		// TODO Auto-generated constructor stub
 	}
 	public void createProjectile(float newSpeed, float newAngle, float newX, float newY){

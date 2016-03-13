@@ -19,7 +19,7 @@ import org.lwjgl.Sys;
 
 public class WorldController {
 	
-		int BOX_AMOUNT = 2;
+		int BOX_AMOUNT = 25;
 		List<Box> gameBoxes = new ArrayList<Box>();
 		List<Projectile> gameProjectiles = new ArrayList<Projectile>();
 		Character gameCharacter;
@@ -123,8 +123,10 @@ public class WorldController {
 
 		    // Run loop
 		    for (int i = 0; i <BOX_AMOUNT; ++i) {
-		    	for( int j = 0; j<BOX_AMOUNT; j++)
-		    	gameBoxes.add(new Box(gameWorld,BodyType.DYNAMIC,(2*i)-10,(2*j)-15,1,1,0,1,1f,0.5f,0));
+		    	
+		    	//gameBoxes.add(new Box(gameWorld,BodyType.DYNAMIC,(float)(Math.random()*30)-10,(float)(Math.random()*30)-15,(float)(Math.random()*2),(float)(Math.random()*2),(float)(Math.random()*2),1,1f,0.5f,0));
+		    	gameBoxes.add(new Box(gameWorld,BodyType.DYNAMIC,(i)-12,-13,0.2f,1,0,1,1f,0.5f,0));
+		    	
 		    } 
 		    gameCharacter = new Character(gameController,gameWorld,-13,-2,0.5f,1.5f,0,0,1f,0,0);
 		    
