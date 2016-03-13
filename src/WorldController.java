@@ -13,6 +13,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.Sys;
 	  
 
 
@@ -20,22 +21,73 @@ public class WorldController {
 	
 		int BOX_AMOUNT = 5;
 		List<Box> gameBoxes = new ArrayList<Box>();
-		List<Box> gameProjectiles = new ArrayList<Box>();
+		List<Projectile> gameProjectiles = new ArrayList<Projectile>();
 		Character gameCharacter;
 		static WorldController gameController;
 		
-		 public void update(){
+		  /** time at last frame */
+	    long lastFrame;
+	     
+	    /** frames per second */
+	    int fps;
+	    /** last fps time */
+	    long lastFPS;
+	 
+		
+		 public void update(int delta){
 			gameCharacter.update();
+			updateFPS();
+			for(Projectile projectile: gameProjectiles){
+	        	projectile.update(delta);
+	        }
 				 
 		}
-		public void createProjectile(Box newProjectile){
+		public void createProjectile(Projectile newProjectile){
 			
 			gameProjectiles.add(newProjectile);
 		
 			
 		}
 		
+	    /** 
+	     * Calculate how many milliseconds have passed 
+	     * since last frame.
+	     * 
+	     * @return milliseconds passed since last frame 
+	     */
+	    public int getDelta() {
+	        long time = getTime();
+	        int delta = (int) (time - lastFrame);
+	        lastFrame = time;
+	      
+	        return delta;
+	    }
+	     
+	    /**
+	     * Get the accurate system time
+	     * 
+	     * @return The system time in milliseconds
+	     */
+	    public long getTime() {
+	        return (Sys.getTime() * 1000) / Sys.getTimerResolution();
+	    }
+	     
+	    /**
+	     * Calculate the FPS and set it in the title bar
+	     */
+	    public void updateFPS() {
+	        if (getTime() - lastFPS > 1000) {
+	            Display.setTitle("FPS: " + fps);
+	            fps = 0;
+	            lastFPS += 1000;
+	        }
+	        fps++;
+	    }
+		
 	    public void start() {
+	    	
+	    	 getDelta(); // call once before loop to initialise lastFrame
+	         lastFPS = getTime(); // call before loop to initialise fps timer
 	    	
 	    	
 	    	
@@ -80,9 +132,12 @@ public class WorldController {
 	    GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	    
 	    while (!Display.isCloseRequested()) {
+	    	float delta = getDelta();
+	    	//System.out.print(delta/1000);
+	    	//System.out.println(" " + timeStep);
+	    	update((int)delta);
+	    	gameWorld.step(delta/1000, velocityIterations, positionIterations);
 	    	
-	    	gameWorld.step(timeStep, velocityIterations, positionIterations);
-	    	update();
 	    	
 	    	
 	        // Clear the screen and depth buffer

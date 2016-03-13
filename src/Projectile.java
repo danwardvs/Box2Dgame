@@ -14,7 +14,14 @@ public class Projectile extends Box {
 		// TODO Auto-generated constructor stub
 		lifetime = newLifetime;
 	}
-	public void update(){
+	public boolean update(int newDelta){
+		time += newDelta;
+		if(time<=lifetime)
+			return true;
+		else
+			return false;
+			
+			
 		
 	}
 

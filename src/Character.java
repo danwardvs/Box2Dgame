@@ -28,7 +28,7 @@ public class Character extends Box {
 				applyImpulse(0,2000);
 		 }
 		 if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
-			Box newProjectile = new Box(gameWorld,BodyType.DYNAMIC,getX()+2,getY(),0.2f,0.2f,0,1,0f,0f,0);
+			Projectile newProjectile = new Projectile(gameWorld,BodyType.DYNAMIC,getX()+2,getY(),0.2f,0.2f,0,1,0f,0f,0,2000);
 			newProjectile.applyLinearImpulse(50, 0);
  			gameController.createProjectile(newProjectile);
 		 }
