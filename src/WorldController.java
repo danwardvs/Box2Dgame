@@ -16,13 +16,13 @@ import org.lwjgl.opengl.GL11;
 	  
 
 
-public class main {
+public class WorldController {
 	
-		int BOX_AMOUNT = 10;
+		int BOX_AMOUNT = 5;
 		List<Box> gameBoxes = new ArrayList<Box>();
 		List<Box> gameProjectiles = new ArrayList<Box>();
 		Character gameCharacter;
-		static main worldController;
+		static WorldController gameController;
 		
 		 public void update(){
 			gameCharacter.update();
@@ -62,7 +62,7 @@ public class main {
 		    	for( int j = 0; j<BOX_AMOUNT; j++)
 		    	gameBoxes.add(new Box(gameWorld,BodyType.DYNAMIC,(2*i)-10,(2*j)-15,1,1,0,1,1f,0.5f,0));
 		    } 
-		    gameCharacter = new Character(worldController,gameWorld,BodyType.DYNAMIC,-13,-2,1,1,0,0,1f,0,0);
+		    gameCharacter = new Character(gameController,gameWorld,BodyType.DYNAMIC,-13,-2,1,1,0,0,1f,0,0);
 		    
 		    
 	        try {
@@ -116,8 +116,8 @@ public class main {
 	
 	public static void main(String[] args) {
 		
-		worldController = new main();
-	       worldController.start();
+		gameController = new WorldController();
+	       gameController.start();
 	}
 
 }
