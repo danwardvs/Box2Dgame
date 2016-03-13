@@ -16,7 +16,7 @@ public class Projectile extends Box {
 	}
 	public boolean update(int newDelta){
 		time += newDelta;
-		if(time<=lifetime)
+		if(time>=lifetime)
 			return true;
 		else
 			return false;

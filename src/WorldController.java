@@ -37,9 +37,21 @@ public class WorldController {
 		 public void update(int delta){
 			gameCharacter.update();
 			updateFPS();
-			for(Projectile projectile: gameProjectiles){
-	        	projectile.update(delta);
-	        }
+			
+			for(int j = 0; j < gameProjectiles.size(); j++)
+			{
+			    Projectile newProjectile = gameProjectiles.get(j);
+
+			    if(newProjectile.update(delta)){
+			       //found, delete.
+			        gameProjectiles.remove(j);
+			        break;
+			    }
+
+			}
+			System.out.println(gameProjectiles.size());
+
+			
 				 
 		}
 		public void createProjectile(Projectile newProjectile){
