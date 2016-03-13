@@ -15,6 +15,7 @@ public class Projectile extends Box {
 		lifetime = newLifetime;
 		body.setBullet(true);
 		
+		
 	}
 	public boolean update(int newDelta){
 		time += newDelta;

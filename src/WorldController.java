@@ -19,7 +19,7 @@ import org.lwjgl.Sys;
 
 public class WorldController {
 	
-		int BOX_AMOUNT = 5;
+		int BOX_AMOUNT = 2;
 		List<Box> gameBoxes = new ArrayList<Box>();
 		List<Projectile> gameProjectiles = new ArrayList<Projectile>();
 		Character gameCharacter;
@@ -35,7 +35,7 @@ public class WorldController {
 	 
 		
 		 public void update(int delta){
-			gameCharacter.update();
+			gameCharacter.update(delta);
 			updateFPS();
 			
 			for(int j = 0; j < gameProjectiles.size(); j++)
@@ -49,7 +49,7 @@ public class WorldController {
 			    }
 
 			}
-			System.out.println(gameProjectiles.size());
+			//System.out.println(gameProjectiles.size());
 
 			
 				 
@@ -126,7 +126,7 @@ public class WorldController {
 		    	for( int j = 0; j<BOX_AMOUNT; j++)
 		    	gameBoxes.add(new Box(gameWorld,BodyType.DYNAMIC,(2*i)-10,(2*j)-15,1,1,0,1,1f,0.5f,0));
 		    } 
-		    gameCharacter = new Character(gameController,gameWorld,-13,-2,1,1,0,0,1f,0,0);
+		    gameCharacter = new Character(gameController,gameWorld,-13,-2,0.5f,1.5f,0,0,1f,0,0);
 		    
 		    
 	        try {
