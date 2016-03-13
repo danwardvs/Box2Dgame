@@ -13,6 +13,8 @@ public class Projectile extends Box {
 		super(newWorld, newBodyType, newX, newY, newWidth, newHeight, newAngle, newR, newG, newB, newA);
 		// TODO Auto-generated constructor stub
 		lifetime = newLifetime;
+		body.setBullet(true);
+		
 	}
 	public boolean update(int newDelta){
 		time += newDelta;

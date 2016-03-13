@@ -126,7 +126,7 @@ public class WorldController {
 		    	for( int j = 0; j<BOX_AMOUNT; j++)
 		    	gameBoxes.add(new Box(gameWorld,BodyType.DYNAMIC,(2*i)-10,(2*j)-15,1,1,0,1,1f,0.5f,0));
 		    } 
-		    gameCharacter = new Character(gameController,gameWorld,BodyType.DYNAMIC,-13,-2,1,1,0,0,1f,0,0);
+		    gameCharacter = new Character(gameController,gameWorld,-13,-2,1,1,0,0,1f,0,0);
 		    
 		    
 	        try {

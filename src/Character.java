@@ -9,11 +9,12 @@ public class Character extends Box {
 	World gameWorld;
 	WorldController gameController;
 	
-	public Character(WorldController newWorldController, World newWorld, BodyType newBodyType, float newX, float newY, float newWidth, float newHeight,
+	public Character(WorldController newWorldController, World newWorld, float newX, float newY, float newWidth, float newHeight,
 			float newAngle, float newR, float newG, float newB, float newA) {
-		super(newWorld, newBodyType, newX, newY, newWidth, newHeight, newAngle, newR, newG, newB, newA);
+		super(newWorld, BodyType.DYNAMIC, newX, newY, newWidth, newHeight, newAngle, newR, newG, newB, newA);
 		gameWorld = newWorld;
 		gameController = newWorldController;
+		
 		// TODO Auto-generated constructor stub
 	}
 	public void update(){
