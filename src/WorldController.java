@@ -18,7 +18,7 @@ import org.lwjgl.Sys;
 
 
 public class WorldController {
-	
+		
 		int BOX_AMOUNT = 25;
 		List<Box> gameBoxes = new ArrayList<Box>();
 		List<Projectile> gameProjectiles = new ArrayList<Projectile>();
@@ -184,6 +184,9 @@ public class WorldController {
 	  
 	
 	public static void main(String[] args) {
+		
+		Level Level_1 = new Level("gamedata/Level_1.xml");
+		Level_1.load_xml();
 		
 		gameController = new WorldController();
 	       gameController.start();

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<level>
+	<object type="Box">
+		<x>5</x>
+		<y>5</y>
+	</object>
+</level>
+
