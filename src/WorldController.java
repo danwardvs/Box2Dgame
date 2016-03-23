@@ -24,6 +24,7 @@ public class WorldController {
 		List<Projectile> gameProjectiles = new ArrayList<Projectile>();
 		Character gameCharacter;
 		static WorldController gameController;
+		static World gameWorld;
 		
 		  /** time at last frame */
 	    long lastFrame;
@@ -54,6 +55,13 @@ public class WorldController {
 			
 				 
 		}
+		 public void createBox(Box newBox){
+				
+			gameBoxes.add(newBox);
+			
+				
+		} 
+		 
 		public void createProjectile(Projectile newProjectile){
 			
 			gameProjectiles.add(newProjectile);
@@ -120,7 +128,10 @@ public class WorldController {
 		    float timeStep = 1.0f/60.0f;
 		    int velocityIterations = 6;
 		    int positionIterations = 2;
-
+		    
+		    Level Level_1 = new Level(gameController,gameWorld,"gamedata/Level_1.xml");
+		    Level_1.load_level();
+		    
 		    // Run loop
 		    for (int i = 0; i <BOX_AMOUNT; ++i) {
 		    	
@@ -185,11 +196,13 @@ public class WorldController {
 	
 	public static void main(String[] args) {
 		
-		Level Level_1 = new Level("gamedata/Level_1.xml");
-		Level_1.load_xml();
 		
 		gameController = new WorldController();
 	       gameController.start();
+	    
+	    
+			
+	    
 	}
 
 }
