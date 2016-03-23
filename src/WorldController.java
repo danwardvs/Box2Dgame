@@ -58,16 +58,20 @@ public class WorldController {
 		 public void createBox(Box newBox){
 				
 			gameBoxes.add(newBox);
-			
-				
+		
 		} 
 		 
 		public void createProjectile(Projectile newProjectile){
 			
 			gameProjectiles.add(newProjectile);
-		
 			
 		}
+		
+		public void createCharacter(Character newCharacter){
+
+			gameCharacter = newCharacter;
+				
+		} 
 		
 	    /** 
 	     * Calculate how many milliseconds have passed 

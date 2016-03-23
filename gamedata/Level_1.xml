@@ -11,5 +11,17 @@
 		<b>1</b>
 		<bodytype>KINEMATIC</bodytype>
 	</object>
+
+	<object type="Character">
+		<x>-5</x>
+		<y>-5</y>
+		<width>0.2</width>
+		<height>1</height>
+		<angle>0</angle>
+		<r>0</r>
+		<g>1</g>
+		<b>0</b>
+		<bodytype>KINEMATIC</bodytype>
+	</object>
 </level>
 
