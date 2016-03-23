@@ -19,7 +19,7 @@ public class Level {
 	
 	World gameWorld;
 	WorldController gameController;
-	String type;
+	String object_type;
 	float x;
 	float y;
 	float width;
@@ -28,7 +28,7 @@ public class Level {
 	float r;
 	float g;
 	float b;
-	String bodytype;
+	String body_type;
 	
 	
 	
@@ -47,8 +47,6 @@ public class Level {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 					
-			//optional, but recommended
-			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
 			doc.getDocumentElement().normalize();
 					
 			NodeList nList = doc.getElementsByTagName("object");
@@ -62,7 +60,7 @@ public class Level {
 
 					Element eElement = (Element) nNode;
 
-					type = ("Type: " + eElement.getAttribute("type"));
+					object_type = (eElement.getAttribute("type"));
 					x = Float.valueOf(eElement.getElementsByTagName("x").item(0).getTextContent());
 					y = Float.valueOf(eElement.getElementsByTagName("y").item(0).getTextContent());
 					width = Float.valueOf(eElement.getElementsByTagName("width").item(0).getTextContent());
@@ -71,14 +69,16 @@ public class Level {
 					r = Float.valueOf(eElement.getElementsByTagName("r").item(0).getTextContent());
 					g = Float.valueOf(eElement.getElementsByTagName("g").item(0).getTextContent());
 					b = Float.valueOf(eElement.getElementsByTagName("b").item(0).getTextContent());
-					bodytype = (eElement.getElementsByTagName("bodytype").item(0).getTextContent());
-					if(bodytype.equals("KINEMATIC")){
-						gameController.createBox(new Box(gameWorld,BodyType.KINEMATIC,x,y,width,height,angle,r,g,b,0));
+					body_type = (eElement.getElementsByTagName("bodytype").item(0).getTextContent());
+					
+					if(object_type.equals("Box")){
+						if(body_type.equals("KINEMATIC")){
+							gameController.createBox(new Box(gameWorld,BodyType.KINEMATIC,x,y,width,height,angle,r,g,b,0));
+						}
+						if(body_type.equals("DYNAMIC")){
+							gameController.createBox(new Box(gameWorld,BodyType.DYNAMIC,x,y,width,height,angle,r,g,b,0));
+						}
 					}
-					if(bodytype.equals("DYNAMIC")){
-						gameController.createBox(new Box(gameWorld,BodyType.DYNAMIC,x,y,width,height,angle,r,g,b,0));
-					}
-
 
 				}
 			}
