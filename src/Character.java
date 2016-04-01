@@ -9,6 +9,9 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.joints.WeldJoint;
+import org.jbox2d.dynamics.joints.WeldJointDef;
+
 
 public class Character extends Box {
 	
@@ -17,7 +20,8 @@ public class Character extends Box {
 	WorldController gameController;
 	int bullet_time;
 	int bullet_time_delay=300;
-	Body feet;
+	Body sensorBody;
+	//WeldJointDef sensorBodyJoint;
 	
 	public Character(WorldController newWorldController, World newWorld, float newX, float newY, float newWidth, float newHeight,
 			float newAngle, float newR, float newG, float newB, float newA) {
@@ -25,6 +29,31 @@ public class Character extends Box {
 		gameWorld = newWorld;
 		gameController = newWorldController;
 		body.setFixedRotation(true);
+		
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyType.DYNAMIC;
+		bodyDef.position.set(newX, newY-height/2);
+		bodyDef.angle = newAngle;
+		sensorBody = newWorld.createBody(bodyDef);
+		PolygonShape dynamicBox = new PolygonShape();
+		dynamicBox.setAsBox(width, 0.2f);
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = dynamicBox;
+		fixtureDef.density = 1;
+		fixtureDef.friction = 0.3f;
+		sensorBody.createFixture(fixtureDef);
+		
+		
+		
+		WeldJointDef jointDef = new WeldJointDef();
+        jointDef.bodyA = body;
+        jointDef.bodyB = sensorBody;
+        jointDef.collideConnected = false;
+        //jointDef.localAnchorA = body.getLocalCenter();
+        jointDef.referenceAngle = jointDef.bodyB.getAngle() - jointDef.bodyA.getAngle();
+        
+        gameWorld.createJoint(jointDef);
+		
 		
 
 	}
