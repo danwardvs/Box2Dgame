@@ -26,10 +26,7 @@ public class Character extends Box {
 		gameController = newWorldController;
 		body.setFixedRotation(true);
 		
-	
 
-	
-		// TODO Auto-generated constructor stub
 	}
 	public void createProjectile(float newSpeed, float newAngle, float newX, float newY){
 		Projectile newProjectile = new Projectile(gameWorld,BodyType.DYNAMIC,getX()+newX,getY()+newY,0.2f,0.2f,0,1,0f,0f,0,2000);

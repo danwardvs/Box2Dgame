@@ -79,6 +79,14 @@ public class Level {
 							gameController.createBox(new Box(gameWorld,BodyType.DYNAMIC,x,y,width,height,angle,r,g,b,0));
 						}
 					}
+					if(object_type.equals("Character")){
+						if(body_type.equals("KINEMATIC")){
+							gameController.createCharacter(new Character(gameController,gameWorld,x,y,width,height,angle,r,g,b,0));
+						}
+						if(body_type.equals("DYNAMIC")){
+							gameController.createCharacter(new Character(gameController,gameWorld,x,y,width,height,angle,r,g,b,0));
+						}
+					}
 
 				}
 			}

@@ -54,6 +54,7 @@ public class Box {
 		return body.getPosition().y;
 	}
 	
+	
 	public void draw(){
         Vec2 position = body.getPosition();
         float angle = body.getAngle();

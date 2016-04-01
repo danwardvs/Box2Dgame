@@ -43,9 +43,10 @@ public class WorldController {
 			{
 			    Projectile newProjectile = gameProjectiles.get(j);
 
-			    if(newProjectile.update(delta)){
-			       //found, delete.
+			    if(newProjectile.update(delta)){			    	
+			    	
 			        gameProjectiles.remove(j);
+			        
 			        break;
 			    }
 
@@ -142,9 +143,7 @@ public class WorldController {
 		    	gameBoxes.add(new Box(gameWorld,BodyType.DYNAMIC,(float)(Math.random()*30)-10,(float)(Math.random()*30)-15,(float)(Math.random()*2),(float)(Math.random()*2),(float)(Math.random()*2),1,1f,0.5f,0));
 		    	//gameBoxes.add(new Box(gameWorld,BodyType.DYNAMIC,(i)-12,-13,0.2f,1,0,1,1f,0.5f,0));
 		    	
-		    } 
-		    gameCharacter = new Character(gameController,gameWorld,-13,-2,0.5f,1.5f,0,0,1f,0,0);
-		    
+		    } 		    
 		    
 	        try {
 	        Display.setDisplayMode(new DisplayMode(800,600));
@@ -166,6 +165,7 @@ public class WorldController {
 	    	//System.out.println(" " + timeStep);
 	    	update((int)delta);
 	    	gameWorld.step(delta/1000, velocityIterations, positionIterations);
+	    	
 	    	
 	    	
 	    	

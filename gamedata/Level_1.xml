@@ -1,9 +1,21 @@
 <?xml version="1.0"?>
 <level>
 	<object type="Box">
-		<x>0</x>
-		<y>0</y>
-		<width>5</width>
+		<x>-8</x>
+		<y>-8</y>
+		<width>2.5</width>
+		<height>0.2</height>
+		<angle>0</angle>
+		<r>0</r>
+		<g>0</g>
+		<b>1</b>
+		<bodytype>KINEMATIC</bodytype>
+	</object>
+
+	<object type="Box">
+		<x>-4</x>
+		<y>-4</y>
+		<width>2.5</width>
 		<height>0.2</height>
 		<angle>0</angle>
 		<r>0</r>
@@ -15,10 +27,10 @@
 	<object type="Character">
 		<x>-5</x>
 		<y>-5</y>
-		<width>0.2</width>
+		<width>0.5</width>
 		<height>1</height>
 		<angle>0</angle>
-		<r>0</r>
+		<r>1</r>
 		<g>1</g>
 		<b>0</b>
 		<bodytype>KINEMATIC</bodytype>
