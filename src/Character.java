@@ -21,6 +21,7 @@ public class Character extends Box {
 	int bullet_time;
 	int bullet_time_delay=300;
 	Body sensorBody;
+	Box Feet;
 	//WeldJointDef sensorBodyJoint;
 	
 	public Character(WorldController newWorldController, World newWorld, boolean newIsSensor, float newX, float newY, float newWidth, float newHeight,
@@ -68,6 +69,7 @@ public class Character extends Box {
 	}
 	
 	public void update(int delta){
+		 //System.out.println(sensorBody.m_contactList);
 		 bullet_time+=delta;
 		 if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT) || Keyboard.isKeyDown(Keyboard.KEY_D) ){
 			applyImpulse(movement_speed,0);
