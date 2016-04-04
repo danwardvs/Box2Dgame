@@ -30,6 +30,9 @@ public class Character extends Box {
 		gameController = newWorldController;
 		body.setFixedRotation(true);
 		
+	
+		
+		/*
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DYNAMIC;
 		bodyDef.position.set(newX, newY-height/2);
@@ -42,15 +45,16 @@ public class Character extends Box {
 		fixtureDef.density = 1;
 		fixtureDef.friction = 0.3f;
 		sensorBody.createFixture(fixtureDef);
+		*/
+		Box Feet = new Box(gameWorld,BodyType.DYNAMIC,newX,newY-newHeight,newWidth,0.2f,0,0,1,0,0);
 		
-		
+		Vec2 anchor = new Vec2(0,newHeight);
+		//gameController.createBox(Feet);
 		
 		WeldJointDef jointDef = new WeldJointDef();
-        jointDef.bodyA = body;
-        jointDef.bodyB = sensorBody;
+		jointDef.initialize(body, Feet.body, anchor);
         jointDef.collideConnected = false;
-        //jointDef.localAnchorA = body.getLocalCenter();
-        jointDef.referenceAngle = jointDef.bodyB.getAngle() - jointDef.bodyA.getAngle();
+        jointDef.referenceAngle = 0;
         
         gameWorld.createJoint(jointDef);
 		
