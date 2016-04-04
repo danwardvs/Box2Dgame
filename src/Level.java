@@ -73,18 +73,18 @@ public class Level {
 					
 					if(object_type.equals("Box")){
 						if(body_type.equals("KINEMATIC")){
-							gameController.createBox(new Box(gameWorld,BodyType.KINEMATIC,x,y,width,height,angle,r,g,b,0));
+							gameController.createBox(new Box(gameWorld,BodyType.KINEMATIC,false,x,y,width,height,angle,r,g,b,0));
 						}
 						if(body_type.equals("DYNAMIC")){
-							gameController.createBox(new Box(gameWorld,BodyType.DYNAMIC,x,y,width,height,angle,r,g,b,0));
+							gameController.createBox(new Box(gameWorld,BodyType.DYNAMIC,false,x,y,width,height,angle,r,g,b,0));
 						}
 					}
 					if(object_type.equals("Character")){
 						if(body_type.equals("KINEMATIC")){
-							gameController.createCharacter(new Character(gameController,gameWorld,x,y,width,height,angle,r,g,b,0));
+							gameController.createCharacter(new Character(gameController,gameWorld,false,x,y,width,height,angle,r,g,b,0));
 						}
 						if(body_type.equals("DYNAMIC")){
-							gameController.createCharacter(new Character(gameController,gameWorld,x,y,width,height,angle,r,g,b,0));
+							gameController.createCharacter(new Character(gameController,gameWorld,false,x,y,width,height,angle,r,g,b,0));
 						}
 					}
 

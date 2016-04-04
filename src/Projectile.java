@@ -10,9 +10,9 @@ public class Projectile extends Box {
 	float lifetime;
 	World gameWorld;
 	
-	public Projectile(World newWorld, BodyType newBodyType, float newX, float newY, float newWidth, float newHeight,
+	public Projectile(World newWorld, BodyType newBodyType, boolean newIsSensor, float newX, float newY, float newWidth, float newHeight,
 			float newAngle, float newR, float newG, float newB, float newA, float newLifetime) {
-		super(newWorld, newBodyType, newX, newY, newWidth, newHeight, newAngle, newR, newG, newB, newA);
+		super(newWorld, newBodyType,newIsSensor, newX, newY, newWidth, newHeight, newAngle, newR, newG, newB, newA);
 		// TODO Auto-generated constructor stub
 		lifetime = newLifetime;
 		body.setBullet(true);

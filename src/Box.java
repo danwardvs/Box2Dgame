@@ -20,7 +20,7 @@ public class Box {
 	float b;
 	float a;
 	
-	public Box(World newWorld,BodyType newBodyType,  float newX, float newY,float newWidth, float newHeight, float newAngle, float newR,float newG, float newB, float newA){
+	public Box(World newWorld,BodyType newBodyType, boolean newIsSensor, float newX, float newY,float newWidth, float newHeight, float newAngle, float newR,float newG, float newB, float newA){
 		
 		r = newR;
 		g = newG;
@@ -40,6 +40,7 @@ public class Box {
 	    fixtureDef.shape = dynamicBox;
 	    fixtureDef.density = 1;
 	    fixtureDef.friction = 0.3f;
+	    fixtureDef.isSensor = newIsSensor;
 	    body.createFixture(fixtureDef);
 	    
 	}

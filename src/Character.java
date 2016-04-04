@@ -23,9 +23,9 @@ public class Character extends Box {
 	Body sensorBody;
 	//WeldJointDef sensorBodyJoint;
 	
-	public Character(WorldController newWorldController, World newWorld, float newX, float newY, float newWidth, float newHeight,
+	public Character(WorldController newWorldController, World newWorld, boolean newIsSensor, float newX, float newY, float newWidth, float newHeight,
 			float newAngle, float newR, float newG, float newB, float newA) {
-		super(newWorld, BodyType.DYNAMIC, newX, newY, newWidth, newHeight, newAngle, newR, newG, newB, newA);
+		super(newWorld, BodyType.DYNAMIC, newIsSensor, newX, newY, newWidth, newHeight, newAngle, newR, newG, newB, newA);
 		gameWorld = newWorld;
 		gameController = newWorldController;
 		body.setFixedRotation(true);
@@ -46,10 +46,10 @@ public class Character extends Box {
 		fixtureDef.friction = 0.3f;
 		sensorBody.createFixture(fixtureDef);
 		*/
-		Box Feet = new Box(gameWorld,BodyType.DYNAMIC,newX,newY-newHeight,newWidth,0.2f,0,0,1,0,0);
+		Box Feet = new Box(gameWorld,BodyType.DYNAMIC,true,newX,newY-newHeight,newWidth,0.2f,0,0,1,0,0);
 		
 		Vec2 anchor = new Vec2(0,newHeight);
-		//gameController.createBox(Feet);
+		gameController.createBox(Feet);
 		
 		WeldJointDef jointDef = new WeldJointDef();
 		jointDef.initialize(body, Feet.body, anchor);
@@ -62,7 +62,7 @@ public class Character extends Box {
 
 	}
 	public void createProjectile(float newSpeed, float newAngle, float newX, float newY){
-		Projectile newProjectile = new Projectile(gameWorld,BodyType.DYNAMIC,getX()+newX,getY()+newY,0.2f,0.2f,0,1,0f,0f,0,2000);
+		Projectile newProjectile = new Projectile(gameWorld,BodyType.DYNAMIC,true,getX()+newX,getY()+newY,0.2f,0.2f,0,1,0f,0f,0,2000);
 		newProjectile.applyLinearImpulse(newSpeed, newAngle);
 		gameController.createProjectile(newProjectile);
 	}
